@@ -1,4 +1,4 @@
-name: Latest Version - Workflow Dispatch
+name: Test - Latest Version
 
 on:
   schedule:
@@ -398,16 +398,3 @@ jobs:
           
           # Output message
           Write-Host "JSON file created successfully at $patch_json"
-
-      - name: Rename FE 
-        id: rename-fe
-        run: |
-          if (Test-Path FE) {
-            $newName = "Fiddler-Everywhere-V$env:SCRAPED_VERSION-Patched"
-            
-            Rename-Item -Path "FE" -NewName $newName
-            
-            echo "patched-fe-name=$newName" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
-          } else {
-            Write-Host "FE Folder not found!?"
-          }
